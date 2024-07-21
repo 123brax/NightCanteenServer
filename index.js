@@ -24,7 +24,6 @@ app.use("/api/food", foodRouter)
 app.use("/api/user", userRouter)
 app.use("/api/cart", cartRouter)
 app.use("/api/order", orderRouter)
-app.use("/images", express.static('uploads'))
 
 app.get("/",(req, res)=>{
     res.send("Hello words")
