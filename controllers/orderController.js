@@ -4,11 +4,13 @@ import userModel from "../models/userModel.js";
 // Placing user order from front end
 const placeOrder = async (req, res) => {
     try {
+        let userData = await userModel.findById(req.body.userId)
         const newOrder = new orderModel({
             userId: req.body.userId,
             items: req.body.items,
             amount: req.body.amount,
             address: req.body.address,
+            number: userData.number,
         })
         await newOrder.save();
         await userModel.findByIdAndUpdate(req.body.userId, {cartData:{}})
