@@ -10,7 +10,6 @@ const placeOrder = async (req, res) => {
             amount: req.body.amount,
             address: req.body.address,
         })
-        console.log(newOrder)
         await newOrder.save();
         await userModel.findByIdAndUpdate(req.body.userId, {cartData:{}})
         res.json({success:true, message: "Order places"})
