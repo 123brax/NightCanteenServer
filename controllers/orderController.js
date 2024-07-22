@@ -45,7 +45,11 @@ const listOrders = async (req, res) => {
 const updateStatus = async (req,res) => {
     try {
         console.log(req.body);
-        await orderModel.findByIdAndUpdate(req.body.orderId, {status:req.body.status})
+        if (req.body.status==="Payment Done") {
+            await orderModel.findByIdAndUpdate(req.body.orderId, {status:req.body.status, payment:true})
+        } else {
+            await orderModel.findByIdAndUpdate(req.body.orderId, {status:req.body.status})
+        }
         res.json({success:true, message:"Updated status"})
     } catch (error) {
         res.json({success:false, message:"Error"})
