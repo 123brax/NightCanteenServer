@@ -60,7 +60,11 @@ const updateStatus = async (req,res) => {
 const newItemAdded = async (req,res) => {
     try {
         const orders = await orderModel.findOne({status: "Approval Required"})
-        res.json({success:true, newItem:true})
+        if (orders) {
+            res.json({success:true, newItem:true})
+        } else {
+            res.json({success:true, newItem:false})
+        }
     } catch (error) {
         res.json({success:false, message:"Error"})
     }
