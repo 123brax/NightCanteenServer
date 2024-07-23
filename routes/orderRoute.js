@@ -8,6 +8,6 @@ orderRouter.post("/place", authMiddleware, placeOrder)
 orderRouter.post("/userOrders", authMiddleware, userOrders)
 orderRouter.get("/list", listOrders)
 orderRouter.post("/status", updateStatus)
-orderRouter.post("/newItem", newItemAdded)
+orderRouter.get("/newItem", newItemAdded)
 
 export default orderRouter
