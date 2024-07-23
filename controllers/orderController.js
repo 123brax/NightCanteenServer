@@ -56,4 +56,14 @@ const updateStatus = async (req,res) => {
     }
 }
 
-export {placeOrder, userOrders, listOrders, updateStatus}
+// Updating order status
+const newItemAdded = async (req,res) => {
+    try {
+        const orders = await orderModel.findOne({status: "Approval Required"})
+        res.json({success:true, newItem:true})
+    } catch (error) {
+        res.json({success:false, message:"Error"})
+    }
+}
+
+export {placeOrder, userOrders, listOrders, updateStatus, newItemAdded}
